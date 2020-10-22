@@ -108,12 +108,12 @@ class ScrollEdgeAction extends Action {
 
 class SwipeAction extends Action {
   // This implementation ignores the percentage parameter
-  constructor(direction, speed, percentage) {
+  constructor(direction, speed, percentage, startPositionX = NaN, startPositionY = NaN) {
     super();
     if (speed === 'fast') {
-      this._call = invoke.callDirectly(DetoxActionApi.swipeInDirection(direction, true));
+      this._call = invoke.callDirectly(DetoxActionApi.swipeInDirection(direction, true, startPositionX, startPositionY));
     } else if (speed === 'slow') {
-      this._call = invoke.callDirectly(DetoxActionApi.swipeInDirection(direction, false));
+      this._call = invoke.callDirectly(DetoxActionApi.swipeInDirection(direction, false, startPositionX, startPositionY));
     } else {
       throw new Error(`SwipeAction speed must be a 'fast'/'slow', got ${speed}`);
     }
